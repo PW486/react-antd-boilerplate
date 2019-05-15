@@ -5,7 +5,10 @@
 import React from 'react';
 import loadable from 'utils/loadable';
 import LoadingIndicator from 'components/LoadingIndicator';
+import { Spin, Icon } from 'antd';
+const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
 
 export default loadable(() => import('./index'), {
-  fallback: <LoadingIndicator />,
+  fallback: <Spin indicator={antIcon} />,
 });
+
