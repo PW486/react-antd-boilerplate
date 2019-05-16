@@ -1,10 +1,11 @@
-// Needed for redux-saga es6 generator support
-import '@babel/polyfill';
+// import "core-js/stable";
+// import "regenerator-runtime/runtime";
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
+import { IntlProvider } from 'react-intl';
 import history from 'utils/history';
 
 import App from 'containers/App';
@@ -18,9 +19,11 @@ const MOUNT_NODE = document.getElementById('app');
 const render = () => {
   ReactDOM.render(
     <Provider store={store}>
-      <ConnectedRouter history={history}>
-          <App />
-      </ConnectedRouter>
+      <IntlProvider locale="en">
+        <ConnectedRouter history={history}>
+            <App />
+        </ConnectedRouter>
+      </IntlProvider>
     </Provider>,
     MOUNT_NODE,
   );

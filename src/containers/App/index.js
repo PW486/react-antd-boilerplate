@@ -7,7 +7,6 @@ import HomePage from 'pages/HomePage';
 import FeaturePage from 'pages/FeaturePage';
 import NotFoundPage from 'pages/NotFoundPage';
 
-import 'antd/dist/antd.css';
 import GlobalStyle from '../../global-styles';
 
 export default function App() {
