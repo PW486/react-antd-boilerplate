@@ -20,7 +20,7 @@ const render = () => {
   ReactDOM.render(
     <Provider store={store}>
       <ConnectedRouter history={history}>
-          <App />
+        <App />
       </ConnectedRouter>
     </Provider>,
     MOUNT_NODE,
