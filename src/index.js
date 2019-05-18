@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
-import { IntlProvider } from 'react-intl';
+// import { IntlProvider } from 'react-intl';
 import history from 'utils/history';
 
 import App from 'containers/App';
@@ -14,16 +14,14 @@ import configureStore from './configureStore';
 
 const initialState = {};
 const store = configureStore(initialState, history);
-const MOUNT_NODE = document.getElementById('app');
+const MOUNT_NODE = document.getElementById('root');
 
 const render = () => {
   ReactDOM.render(
     <Provider store={store}>
-      <IntlProvider locale="en">
-        <ConnectedRouter history={history}>
-            <App />
-        </ConnectedRouter>
-      </IntlProvider>
+      <ConnectedRouter history={history}>
+          <App />
+      </ConnectedRouter>
     </Provider>,
     MOUNT_NODE,
   );

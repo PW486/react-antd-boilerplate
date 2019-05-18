@@ -18,21 +18,28 @@ export default function App() {
       >
         <meta name="description" content="A React Antd Boilerplate application" />
       </Helmet>
-      <Layout.Header theme="dark" style={{height: '48px', lineHeight: '48px', padding: '0 30px'}}>
+      <Layout.Header style={{height: '48px', lineHeight: '48px', padding: '0 30px'}}>
         <Link to="/">
-          <Icon type="layout" /> React Antd Boilerplate
+          <span style={{ lineHeight: '48px', fontWeight: 'bold', fontSize: 'medium' }}><Icon type="layout" /> React Ant Design Boilerplate</span>
         </Link>
+        <span level={4} style={{ lineHeight: '48px', float: 'right', color: 'rgba(255, 255, 255, 0.65)' }}>{'{ id: 1, permissions: [\'admin\'] }'}</span>
       </Layout.Header>
       <Layout>
-        <Layout.Sider collapsible >
-          <Menu theme="dark" defaultSelectedKeys={['']} mode="inline">
+        <Layout.Sider>
+          <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
             <Menu.Item key="1">
+              <Link to="/">
+                <Icon type="home" />
+                <span>HomePage</span>
+              </Link>
+            </Menu.Item>
+            <Menu.Item key="2">
               <Link to="/features">
                 <Icon type="desktop" />
                 <span>Features</span>
               </Link>
             </Menu.Item>
-            <Menu.Item key="2">
+            <Menu.Item key="3">
               <Link to="/notfound">
                 <Icon type="pie-chart" />
                 <span>NotFound</span>
@@ -48,7 +55,7 @@ export default function App() {
               <Route path="" component={NotFoundPage} />
             </Switch>
           </Layout.Content>
-          <Layout.Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Layout.Footer>
+          <Layout.Footer style={{ textAlign: 'center' }}>DONGGEON LIM ©2019</Layout.Footer>
         </Layout>
       </Layout>
       <GlobalStyle />
