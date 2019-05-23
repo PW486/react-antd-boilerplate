@@ -8,6 +8,8 @@ import { call, put, select, takeLatest } from 'redux-saga/effects';
 
 import request from 'utils/request';
 import { makeSelectUsername } from 'pages/HomePage/selectors';
+import { LOAD_POSTS } from './constants';
+import { loadPosts } from './api';
 
 /**
  * Github repos request/response handler
@@ -26,6 +28,17 @@ export function* getRepos() {
   }
 }
 
+export function* getPosts() {
+  // const posts = yield call(request, )
+  const posts = yield call(loadPosts);
+  console.log(posts.data);
+  // Instructing middleware to dispatch corresponding action.
+  yield put({
+    type: 'LOAD_POSTS_SUCCESS',
+    posts,
+  });
+}
+
 /**
  * Root saga manages watcher lifecycle
  */
@@ -35,4 +48,5 @@ export default function* githubData() {
   // It returns task descriptor (just like fork) so we can continue execution
   // It will be cancelled automatically on component unmount
   // yield takeLatest(LOAD_REPOS, getRepos);
+  yield takeLatest(LOAD_POSTS, getPosts);
 }

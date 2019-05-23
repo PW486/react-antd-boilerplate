@@ -15,27 +15,21 @@ import { createStructuredSelector } from 'reselect';
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
 import H2 from 'components/H2';
+import { Button } from 'antd';
 import AtPrefix from './AtPrefix';
 import CenteredSection from './CenteredSection';
 import Form from './Form';
 import Input from './Input';
 import Section from './Section';
 import messages from './messages';
-import { changeUsername } from './actions';
+import { changeUsername, loadPosts } from './actions';
 import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
 const key = 'home';
 
-export function HomePage({
-  username,
-  loading,
-  error,
-  repos,
-  onSubmitForm,
-  onChangeUsername,
-}) {
+export function HomePage({ username, loading, error, repos, onSubmitForm, onChangeUsername, onLoadPosts }) {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
@@ -53,10 +47,7 @@ export function HomePage({
     <article>
       <Helmet>
         <title>Home Page</title>
-        <meta
-          name="description"
-          content="A React.js Boilerplate application homepage"
-        />
+        <meta name="description" content="A React.js Boilerplate application homepage" />
       </Helmet>
       <div>
         <CenteredSection>
@@ -68,6 +59,7 @@ export function HomePage({
           </p>
         </CenteredSection>
         <Section>
+          <Button onClick={onLoadPosts}>butttton</Button>
           <H2>
             <FormattedMessage {...messages.trymeHeader} />
           </H2>
@@ -77,13 +69,7 @@ export function HomePage({
               <AtPrefix>
                 <FormattedMessage {...messages.trymeAtPrefix} />
               </AtPrefix>
-              <Input
-                id="username"
-                type="text"
-                placeholder="mxstbr"
-                value={username}
-                onChange={onChangeUsername}
-              />
+              <Input id="username" type="text" placeholder="mxstbr" value={username} onChange={onChangeUsername} />
             </label>
           </Form>
         </Section>
@@ -99,6 +85,7 @@ HomePage.propTypes = {
   onSubmitForm: PropTypes.func,
   username: PropTypes.string,
   onChangeUsername: PropTypes.func,
+  onLoadPosts: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -107,7 +94,8 @@ const mapStateToProps = createStructuredSelector({
 
 export function mapDispatchToProps(dispatch) {
   return {
-    onChangeUsername: evt => dispatch(changeUsername(evt.target.value))
+    onChangeUsername: evt => dispatch(changeUsername(evt.target.value)),
+    onLoadPosts: () => dispatch(loadPosts()),
   };
 }
 
