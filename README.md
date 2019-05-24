@@ -5,8 +5,7 @@
 ## TODO
 
 - boardpage + saga/reducer (get/posts)
-- axios
-- sign up / sign in
+- sign up / sign in + axios header + redux localstorage
 - jwt decode (user id and permission)
 - cleaning
 - jest

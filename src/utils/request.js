@@ -23,8 +23,10 @@ function checkStatus(response) {
   throw error;
 }
 
-export default function request(url, options) {
-  return fetch(url, options)
-    .then(checkStatus)
-    .then(parseJSON);
-}
+// export default function request(url, options) {
+//   return fetch(url, options)
+//     .then(checkStatus)
+//     .then(parseJSON);
+// }
+
+export default instance;
