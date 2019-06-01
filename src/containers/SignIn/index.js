@@ -14,8 +14,8 @@ import { Form, Input, Icon, Button } from 'antd';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectSignIn from './selectors';
-import { signInRequest } from './actions';
+import { makeSelectSignIn, makeSelectEmail, makeSelectPassword } from './selectors';
+import { signInRequest, changeEmail, changePassword } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 
@@ -23,7 +23,7 @@ const handleSubmit = e => {
   e.preventDefault();
 };
 
-export function SignIn({ signInRequest }) {
+export function SignIn({ signInRequest, email, onChangeEmail, password, onChangePassword }) {
   useInjectReducer({ key: 'signIn', reducer });
   useInjectSaga({ key: 'signIn', saga });
 
@@ -38,7 +38,8 @@ export function SignIn({ signInRequest }) {
           <Input
             prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
             placeholder="Email"
-          // onChange={}
+            onChange={onChangeEmail}
+            value={email}
           />
         </Form.Item>
         <Form.Item>
@@ -46,6 +47,8 @@ export function SignIn({ signInRequest }) {
             prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
             type="password"
             placeholder="Password"
+            onChange={onChangePassword}
+            value={password}
           />
         </Form.Item>
         <Form.Item>
@@ -63,16 +66,22 @@ export function SignIn({ signInRequest }) {
 SignIn.propTypes = {
   dispatch: PropTypes.func.isRequired,
   signInRequest: PropTypes.func,
+  onChangeEmail: PropTypes.func,
+  onChangePassword: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   signIn: makeSelectSignIn(),
+  email: makeSelectEmail(),
+  password: makeSelectPassword(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
     signInRequest: () => dispatch(signInRequest()),
+    onChangeEmail: evt => dispatch(changeEmail(evt.target.value)),
+    onChangePassword: evt => dispatch(changePassword(evt.target.value)),
   };
 }
 

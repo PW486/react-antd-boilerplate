@@ -4,10 +4,12 @@
  *
  */
 import produce from 'immer';
-import { DEFAULT_ACTION, SIGNIN_SUCCESS, SIGNIN_REQUEST } from './constants';
+import { DEFAULT_ACTION, SIGNIN_SUCCESS, SIGNIN_REQUEST, CHANGE_EMAIL, CHANGE_PASSWORD } from './constants';
 
 export const initialState = {
   user: [],
+  email: '',
+  password: '',
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -18,9 +20,11 @@ const signInReducer = (state = initialState, action) =>
         break;
       case SIGNIN_REQUEST:
         break;
-      case SIGNIN_SUCCESS:
-        console.log(action);
-        draft.user = action.payload.data;
+      case CHANGE_EMAIL:
+        draft.email = action.payload;
+        break;
+      case CHANGE_PASSWORD:
+        draft.password = action.payload;
         break;
     }
   });

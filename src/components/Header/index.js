@@ -1,8 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import { Link } from 'react-router-dom';
 import { Layout, Icon } from 'antd';
 
-function Header() {
+import { makeSelectLoggedIn, makeSelectUser } from 'containers/App/selectors';
+
+export function Header(props) {
+  const { loggedIn, user } = props;
+
   return (
     <Layout.Header style={{ height: '48px', lineHeight: '48px', padding: '0 30px' }}>
       <Link to="/">
@@ -11,10 +18,20 @@ function Header() {
         </span>
       </Link>
       <span level={4} style={{ lineHeight: '48px', float: 'right', color: 'rgba(255, 255, 255, 0.65)' }}>
-        {"{ id: 1, permissions: ['admin'] }"}
+        {user.access_token}
       </span>
     </Layout.Header>
   );
 }
 
-export default Header;
+Header.propTypes = {
+  loggedIn: PropTypes.bool,
+  user: PropTypes.object,
+};
+
+export default connect(
+  createStructuredSelector({
+    loggedIn: makeSelectLoggedIn(),
+    user: makeSelectUser(),
+  }),
+)(Header);

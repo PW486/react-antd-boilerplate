@@ -4,7 +4,7 @@
  *
  */
 
-import { DEFAULT_ACTION, SIGNIN_REQUEST, SIGNIN_SUCCESS } from './constants';
+import { DEFAULT_ACTION, SIGNIN_REQUEST, SIGNIN_SUCCESS, CHANGE_EMAIL, CHANGE_PASSWORD } from './constants';
 
 export function defaultAction() {
   return {
@@ -12,10 +12,9 @@ export function defaultAction() {
   };
 }
 
-export function signInRequest(payload) {
+export function signInRequest() {
   return {
-    type: SIGNIN_REQUEST,
-    payload
+    type: SIGNIN_REQUEST
   };
 }
 
@@ -25,5 +24,21 @@ export function signInSuccess(payload) {
     payload
   };
 }
+
+export function changeEmail(payload) {
+  return {
+    type: CHANGE_EMAIL,
+    payload
+  };
+}
+
+export function changePassword(payload) {
+  return {
+    type: CHANGE_PASSWORD,
+    payload
+  };
+}
+
+
 
 // https://medium.com/@FourwingsY/redux-redux-saga-로-async-다루기-b7b9a9110356

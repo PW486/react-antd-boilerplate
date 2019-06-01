@@ -8,37 +8,24 @@
  */
 
 import produce from 'immer';
-import { LOAD_REPOS_SUCCESS, LOAD_REPOS, LOAD_REPOS_ERROR } from './constants';
+import { SIGNIN_SUCCESS } from '../SignIn/constants';
 
+let user = JSON.parse(localStorage.getItem('user'));
+const userState = user ? { loggedIn: true, user } : {};
 // The initial state of the App
 export const initialState = {
-  loading: false,
-  error: false,
-  currentUser: false,
-  userData: {
-    repositories: false,
-  },
+  ...userState
 };
 
 /* eslint-disable default-case, no-param-reassign */
 const appReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case LOAD_REPOS:
-        draft.loading = true;
-        draft.error = false;
-        draft.userData.repositories = false;
-        break;
-
-      case LOAD_REPOS_SUCCESS:
-        draft.userData.repositories = action.repos;
-        draft.loading = false;
-        draft.currentUser = action.username;
-        break;
-
-      case LOAD_REPOS_ERROR:
-        draft.error = action.error;
-        draft.loading = false;
+      case SIGNIN_SUCCESS:
+        console.log(action);
+        draft.loggedIn = true;
+        draft.user = action.payload.data;
+        localStorage.setItem('user', JSON.stringify(action.payload.data));
         break;
     }
   });

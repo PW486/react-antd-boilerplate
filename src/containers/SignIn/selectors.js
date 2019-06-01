@@ -21,5 +21,16 @@ const makeSelectSignIn = () =>
     substate => substate,
   );
 
-export default makeSelectSignIn;
-export { selectSignInDomain };
+const makeSelectEmail = () =>
+  createSelector(
+    selectSignInDomain,
+    substate => substate.email,
+  );
+
+const makeSelectPassword = () =>
+  createSelector(
+    selectSignInDomain,
+    substate => substate.password,
+  );
+
+export { selectSignInDomain, makeSelectSignIn, makeSelectEmail, makeSelectPassword };

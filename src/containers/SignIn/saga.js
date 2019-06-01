@@ -3,12 +3,20 @@ import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { SIGNIN_REQUEST } from './constants';
 import { signIn } from './api';
 import { signInSuccess } from './actions';
+import { makeSelectEmail, makeSelectPassword } from './selectors';
 
-export function* postSignIn(action) {
-  const user = yield call(signIn, action.payload);
-  console.log(user);
+export function* postSignIn() {
+  const email = yield select(makeSelectEmail());
+  const password = yield select(makeSelectPassword());
 
-  yield put(signInSuccess(user));
+  try {
+    const user = yield call(signIn, { email, password });
+    console.log(user);
+    yield put(signInSuccess(user));
+  }
+  catch (error) {
+    yield put({ type: 'SIGNIN_FAILURE', error })
+  }
 }
 
 // Individual exports for testing
