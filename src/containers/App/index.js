@@ -9,6 +9,7 @@ import Board from 'containers/Board';
 import NotFound from 'containers/NotFound';
 import Header from 'components/Header';
 import Sider from 'components/Sider';
+import PrivateRoute from 'components/PrivateRoute';
 
 import GlobalStyle from '../../global-styles';
 
@@ -25,7 +26,7 @@ export default function App() {
           <Layout.Content style={{ margin: '0 16px' }}>
             <Switch>
               <Route exact path="/" component={SignUp} />
-              <Route path="/signup" component={SignUp} />
+              <PrivateRoute path="/signup" component={SignUp} />
               <Route path="/signin" component={SignIn} />
               <Route path="" component={NotFound} />
             </Switch>
