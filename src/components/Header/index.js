@@ -1,28 +1,19 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
-
-import A from './A';
-import Img from './Img';
-import NavBar from './NavBar';
-import HeaderLink from './HeaderLink';
-import Banner from './banner.jpg';
-import messages from './messages';
+import { Link } from 'react-router-dom';
+import { Layout, Icon } from 'antd';
 
 function Header() {
   return (
-    <div>
-      <A href="https://www.reactboilerplate.com/">
-        <Img src={Banner} alt="react-boilerplate - Logo" />
-      </A>
-      <NavBar>
-        <HeaderLink to="/">
-          <FormattedMessage {...messages.home} />
-        </HeaderLink>
-        <HeaderLink to="/features">
-          <FormattedMessage {...messages.features} />
-        </HeaderLink>
-      </NavBar>
-    </div>
+    <Layout.Header style={{ height: '48px', lineHeight: '48px', padding: '0 30px' }}>
+      <Link to="/">
+        <span style={{ lineHeight: '48px', fontWeight: 'bold', fontSize: 'medium' }}>
+          <Icon type="layout" /> React Ant Design Boilerplate
+        </span>
+      </Link>
+      <span level={4} style={{ lineHeight: '48px', float: 'right', color: 'rgba(255, 255, 255, 0.65)' }}>
+        {"{ id: 1, permissions: ['admin'] }"}
+      </span>
+    </Layout.Header>
   );
 }
 
