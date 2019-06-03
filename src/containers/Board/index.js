@@ -13,11 +13,13 @@ import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import makeSelectBoard from './selectors';
+import { makeSelectBoard, makeSelectPostList } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import { postGetAllRequest } from './actions';
+import { Button } from 'antd';
 
-export function Board() {
+export function Board({ postGetAllRequest, postList }) {
   useInjectReducer({ key: 'board', reducer });
   useInjectSaga({ key: 'board', saga });
 
@@ -27,6 +29,8 @@ export function Board() {
         <title>Board</title>
         <meta name="description" content="Description of Board" />
       </Helmet>
+      {JSON.stringify(postList)}
+      <Button onClick={postGetAllRequest}>temp</Button>
     </div>
   );
 }
@@ -37,11 +41,13 @@ Board.propTypes = {
 
 const mapStateToProps = createStructuredSelector({
   board: makeSelectBoard(),
+  postList: makeSelectPostList(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    postGetAllRequest: () => dispatch(postGetAllRequest()),
   };
 }
 

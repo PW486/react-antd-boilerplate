@@ -16,6 +16,7 @@
     "customize-cra": "^0.2.12",
     "history": "^4.9.0",
     "immer": "^3.1.2",
+    "jwt-decode": "^2.2.0",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
     "react": "^16.8.6",

@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet';
 import { Switch, Route, Link } from 'react-router-dom';
 import { Layout, Menu, Icon } from 'antd';
 
-import SignUp from 'containers/SignUp';
 import SignIn from 'containers/SignIn';
 import Board from 'containers/Board';
 import NotFound from 'containers/NotFound';
@@ -25,8 +24,7 @@ export default function App() {
         <Layout>
           <Layout.Content style={{ margin: '0 16px' }}>
             <Switch>
-              <Route exact path="/" component={SignUp} />
-              <PrivateRoute path="/signup" component={SignUp} />
+              <PrivateRoute exact path="/" component={Board} />
               <Route path="/signin" component={SignIn} />
               <Route path="" component={NotFound} />
             </Switch>

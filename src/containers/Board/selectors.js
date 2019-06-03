@@ -21,5 +21,10 @@ const makeSelectBoard = () =>
     substate => substate,
   );
 
-export default makeSelectBoard;
-export { selectBoardDomain };
+const makeSelectPostList = () =>
+  createSelector(
+    selectBoardDomain,
+    substate => substate.postList,
+  );
+
+export { selectBoardDomain, makeSelectBoard, makeSelectPostList };

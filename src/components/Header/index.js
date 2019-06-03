@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Link } from 'react-router-dom';
 import { Layout, Icon } from 'antd';
+import jwtDecode from 'jwt-decode'
 
 import { makeSelectLoggedIn, makeSelectUser } from 'containers/App/selectors';
 
@@ -18,7 +19,7 @@ export function Header(props) {
         </span>
       </Link>
       <span level={4} style={{ lineHeight: '48px', float: 'right', color: 'rgba(255, 255, 255, 0.65)' }}>
-        {user.access_token}
+        {user && JSON.stringify(jwtDecode(user.access_token))}
       </span>
     </Layout.Header>
   );

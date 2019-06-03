@@ -7,7 +7,6 @@ import produce from 'immer';
 import { DEFAULT_ACTION, SIGNIN_SUCCESS, SIGNIN_REQUEST, CHANGE_EMAIL, CHANGE_PASSWORD } from './constants';
 
 export const initialState = {
-  user: [],
   email: '',
   password: '',
 };
