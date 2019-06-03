@@ -1,38 +1,31 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import { Switch, Route, Link } from 'react-router-dom';
-import { Layout, Menu, Icon } from 'antd';
+import { Switch, Route } from 'react-router-dom';
+import { Layout } from 'antd';
 
-import SignIn from 'containers/SignIn';
-import Board from 'containers/Board';
-import NotFound from 'containers/NotFound';
 import Header from 'components/Header';
 import Sider from 'components/Sider';
 import PrivateRoute from 'components/PrivateRoute';
-
-import GlobalStyle from '../../global-styles';
+import routes from 'routes';
 
 export default function App() {
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <Helmet titleTemplate="%s - React Antd Boilerplate" defaultTitle="React Antd Boilerplate">
-        <meta name="description" content="A React Antd Boilerplate application" />
+      <Helmet titleTemplate="%s - Create React Ant Design Boilerplate" defaultTitle="Create React Ant Design Boilerplate">
+        <meta name="description" content="A Create React Ant Design Boilerplate application" />
       </Helmet>
       <Header />
       <Layout>
         <Sider />
         <Layout>
-          <Layout.Content style={{ margin: '0 16px' }}>
+          <Layout.Content style={{ margin: '16px' }}>
             <Switch>
-              <PrivateRoute exact path="/" component={Board} />
-              <Route path="/signin" component={SignIn} />
-              <Route path="" component={NotFound} />
+              {routes.map((route) => (route.auth ? <PrivateRoute {...route} /> : <Route {...route} />))}
             </Switch>
           </Layout.Content>
-          <Layout.Footer style={{ textAlign: 'center' }}>DONGGEON LIM ©2019</Layout.Footer>
+          <Layout.Footer style={{ textAlign: 'center' }}>Create React Ant Design Boilerplate</Layout.Footer>
         </Layout>
       </Layout>
-      <GlobalStyle />
     </Layout>
   );
 }

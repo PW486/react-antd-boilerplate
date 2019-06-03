@@ -1,14 +1,7 @@
-/*
- * AppReducer
- *
- * The reducer takes care of our data. Using actions, we can
- * update our application state. To add a new action,
- * add it to the switch statement in the reducer function
- *
- */
-
 import produce from 'immer';
+import { message } from 'antd';
 import { SIGNIN_SUCCESS } from '../SignIn/constants';
+import { ERROR_MESSAGE, SUCCESS_MESSAGE } from './constants';
 
 let user = JSON.parse(localStorage.getItem('user'));
 const userState = user ? { loggedIn: true, user } : {};
@@ -21,6 +14,14 @@ export const initialState = {
 const appReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
+      case SUCCESS_MESSAGE:
+        console.log(action);
+        message.success('This is a message of success');
+        break;
+      case ERROR_MESSAGE:
+        console.log(action);
+        message.error('This is a message of error');
+        break;
       case SIGNIN_SUCCESS:
         console.log(action);
         draft.loggedIn = true;

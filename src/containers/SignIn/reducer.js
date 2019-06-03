@@ -4,7 +4,7 @@
  *
  */
 import produce from 'immer';
-import { DEFAULT_ACTION, SIGNIN_SUCCESS, SIGNIN_REQUEST, CHANGE_EMAIL, CHANGE_PASSWORD } from './constants';
+import { SIGNIN_SUCCESS, SIGNIN_REQUEST, CHANGE_EMAIL, CHANGE_PASSWORD } from './constants';
 
 export const initialState = {
   email: '',
@@ -15,8 +15,6 @@ export const initialState = {
 const signInReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case DEFAULT_ACTION:
-        break;
       case SIGNIN_REQUEST:
         break;
       case CHANGE_EMAIL:

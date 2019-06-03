@@ -4,6 +4,7 @@ import { SIGNIN_REQUEST } from './constants';
 import { signIn } from './api';
 import { signInSuccess } from './actions';
 import { makeSelectEmail, makeSelectPassword } from './selectors';
+import { errorMessageAction } from '../App/actions';
 
 export function* postSignIn() {
   const email = yield select(makeSelectEmail());
@@ -15,7 +16,7 @@ export function* postSignIn() {
     yield put(signInSuccess(user));
   }
   catch (error) {
-    yield put({ type: 'SIGNIN_FAILURE', error })
+    yield put(errorMessageAction(error))
   }
 }
 

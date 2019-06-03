@@ -4,13 +4,7 @@
  *
  */
 
-import { DEFAULT_ACTION, SIGNIN_REQUEST, SIGNIN_SUCCESS, CHANGE_EMAIL, CHANGE_PASSWORD } from './constants';
-
-export function defaultAction() {
-  return {
-    type: DEFAULT_ACTION,
-  };
-}
+import { SIGNIN_REQUEST, SIGNIN_SUCCESS, CHANGE_EMAIL, CHANGE_PASSWORD } from './constants';
 
 export function signInRequest() {
   return {
