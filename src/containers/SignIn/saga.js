@@ -1,27 +1,25 @@
 import { takeLatest, call, put, select } from 'redux-saga/effects';
+import { push } from 'connected-react-router';
 
-import { SIGNIN_REQUEST } from './constants';
-import { signIn } from './api';
-import { signInSuccess } from './actions';
+import { POST_SIGN_IN_REQUEST } from './constants';
+import { postSignInAPI } from './api';
+import { postSignInSuccess, postSignInFailure } from './actions';
 import { makeSelectEmail, makeSelectPassword } from './selectors';
-import { errorMessageAction } from '../App/actions';
 
-export function* postSignIn() {
+export function* postSignInSaga() {
   const email = yield select(makeSelectEmail());
   const password = yield select(makeSelectPassword());
 
   try {
-    const user = yield call(signIn, { email, password });
-    console.log(user);
-    yield put(signInSuccess(user));
+    const user = yield call(postSignInAPI, { email, password });
+    yield put(postSignInSuccess(user));
+    yield put(push('/'));
   }
   catch (error) {
-    yield put(errorMessageAction(error))
+    yield put(postSignInFailure(error))
   }
 }
 
-// Individual exports for testing
 export default function* signInSaga() {
-  // See example in containers/HomePage/saga.js
-  yield takeLatest(SIGNIN_REQUEST, postSignIn);
+  yield takeLatest(POST_SIGN_IN_REQUEST, postSignInSaga);
 }

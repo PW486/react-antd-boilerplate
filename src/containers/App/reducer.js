@@ -1,11 +1,11 @@
 import produce from 'immer';
 import { message } from 'antd';
-import { SIGNIN_SUCCESS } from '../SignIn/constants';
+import { POST_SIGN_IN_SUCCESS } from '../SignIn/constants';
 import { ERROR_MESSAGE, SUCCESS_MESSAGE } from './constants';
+import jwtDecode from 'jwt-decode'
 
-let user = JSON.parse(localStorage.getItem('user'));
-const userState = user ? { loggedIn: true, user } : {};
-// The initial state of the App
+const token = localStorage.getItem('token');
+const userState = token ? { user: jwtDecode(token) } : {};
 export const initialState = {
   ...userState
 };
@@ -20,13 +20,12 @@ const appReducer = (state = initialState, action) =>
         break;
       case ERROR_MESSAGE:
         console.log(action);
-        message.error('This is a message of error');
+        message.error(action.payload.response.data.message);
         break;
-      case SIGNIN_SUCCESS:
+      case POST_SIGN_IN_SUCCESS:
         console.log(action);
-        draft.loggedIn = true;
-        draft.user = action.payload.data;
-        localStorage.setItem('user', JSON.stringify(action.payload.data));
+        draft.user = jwtDecode(token);
+        localStorage.setItem('token', action.payload.data.access_token);
         break;
     }
   });

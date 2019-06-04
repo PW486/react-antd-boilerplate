@@ -1,5 +1,5 @@
 import request from 'utils/request';
 
-export function signIn(payload) {
+export function postSignInAPI(payload) {
   return request.post('v1/signin', payload);
 }

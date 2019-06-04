@@ -9,8 +9,4 @@
 - Testing (jest)
 - Write README.md
 
-
-actions - request / success (signin first)
-
-
 redux store user decode -> sider permission check

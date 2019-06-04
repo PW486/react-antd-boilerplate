@@ -1,38 +1,8 @@
-/*
- *
- * SignIn actions
- *
- */
+import { POST_SIGN_IN_REQUEST, POST_SIGN_IN_SUCCESS, POST_SIGN_IN_FAILURE, ON_CHANGE_EMAIL, ON_CHANGE_PASSWORD } from './constants';
 
-import { SIGNIN_REQUEST, SIGNIN_SUCCESS, CHANGE_EMAIL, CHANGE_PASSWORD } from './constants';
+export const postSignInAction = () => ({ type: POST_SIGN_IN_REQUEST });
+export const postSignInSuccess = (payload) => ({ type: POST_SIGN_IN_SUCCESS, payload });
+export const postSignInFailure = (payload) => ({ type: POST_SIGN_IN_FAILURE, payload });
 
-export function signInRequest() {
-  return {
-    type: SIGNIN_REQUEST
-  };
-}
-
-export function signInSuccess(payload) {
-  return {
-    type: SIGNIN_SUCCESS,
-    payload
-  };
-}
-
-export function changeEmail(payload) {
-  return {
-    type: CHANGE_EMAIL,
-    payload
-  };
-}
-
-export function changePassword(payload) {
-  return {
-    type: CHANGE_PASSWORD,
-    payload
-  };
-}
-
-
-
-// https://medium.com/@FourwingsY/redux-redux-saga-로-async-다루기-b7b9a9110356
+export const onChangeEmailAction = (payload) => ({ type: ON_CHANGE_EMAIL, payload });
+export const onChangePasswordAction = (payload) => ({ type: ON_CHANGE_PASSWORD, payload });

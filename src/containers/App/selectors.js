@@ -2,7 +2,6 @@ import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
 const selectGlobal = state => state.global || initialState;
-
 const selectRouter = state => state.router;
 
 const makeSelectUser = () =>
@@ -20,6 +19,7 @@ const makeSelectLoggedIn = () =>
 
 export {
   selectGlobal,
+  selectRouter,
   makeSelectUser,
   makeSelectLoggedIn,
 };

@@ -9,7 +9,7 @@ import jwtDecode from 'jwt-decode'
 import { makeSelectLoggedIn, makeSelectUser } from 'containers/App/selectors';
 
 export function Header(props) {
-  const { loggedIn, user } = props;
+  const { user } = props;
 
   return (
     <Layout.Header style={{ height: '48px', lineHeight: '48px', padding: '0 30px' }}>
@@ -19,7 +19,7 @@ export function Header(props) {
         </span>
       </Link>
       <span level={4} style={{ lineHeight: '48px', float: 'right', color: 'rgba(255, 255, 255, 0.65)' }}>
-        {user && JSON.stringify(jwtDecode(user.access_token))}
+        {JSON.stringify(user)}
       </span>
     </Layout.Header>
   );

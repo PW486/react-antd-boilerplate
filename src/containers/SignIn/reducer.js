@@ -1,27 +1,22 @@
-/*
- *
- * SignIn reducer
- *
- */
 import produce from 'immer';
-import { SIGNIN_SUCCESS, SIGNIN_REQUEST, CHANGE_EMAIL, CHANGE_PASSWORD } from './constants';
+import { ON_CHANGE_EMAIL, ON_CHANGE_PASSWORD } from './constants';
 
 export const initialState = {
-  email: '',
-  password: '',
+  userForm: {
+    email: '',
+    password: '',
+  },
 };
 
 /* eslint-disable default-case, no-param-reassign */
 const signInReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
-      case SIGNIN_REQUEST:
+      case ON_CHANGE_EMAIL:
+        draft.userForm.email = action.payload;
         break;
-      case CHANGE_EMAIL:
-        draft.email = action.payload;
-        break;
-      case CHANGE_PASSWORD:
-        draft.password = action.payload;
+      case ON_CHANGE_PASSWORD:
+        draft.userForm.password = action.payload;
         break;
     }
   });

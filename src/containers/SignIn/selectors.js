@@ -1,36 +1,9 @@
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
-/**
- * Direct selector to the signIn state domain
- */
-
 const selectSignInDomain = state => state.signIn || initialState;
 
-/**
- * Other specific selectors
- */
+const makeSelectEmail = () => createSelector(selectSignInDomain, substate => substate.userForm.email);
+const makeSelectPassword = () => createSelector(selectSignInDomain, substate => substate.userForm.password);
 
-/**
- * Default selector used by SignIn
- */
-
-const makeSelectSignIn = () =>
-  createSelector(
-    selectSignInDomain,
-    substate => substate,
-  );
-
-const makeSelectEmail = () =>
-  createSelector(
-    selectSignInDomain,
-    substate => substate.email,
-  );
-
-const makeSelectPassword = () =>
-  createSelector(
-    selectSignInDomain,
-    substate => substate.password,
-  );
-
-export { selectSignInDomain, makeSelectSignIn, makeSelectEmail, makeSelectPassword };
+export { selectSignInDomain, makeSelectEmail, makeSelectPassword };
