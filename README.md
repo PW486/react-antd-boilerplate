@@ -4,9 +4,8 @@
 
 ## TODO
 
+- Change Sider (permissions check)
 - Board post multipart/form-data
 - Refactoring + UI + Cleaning
 - Testing (jest)
 - Write README.md
-
-redux store user decode -> sider permission check
