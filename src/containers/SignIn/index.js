@@ -25,6 +25,7 @@ class SignIn extends React.Component {
           <Input
             prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
             placeholder="Email"
+            size="large"
             onChange={this.props.onChangeEmail}
             value={this.props.email}
           />
@@ -33,6 +34,7 @@ class SignIn extends React.Component {
           <Input.Password
             prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
             placeholder="Password"
+            size="large"
             onChange={this.props.onChangePassword}
             value={this.props.password}
           />
