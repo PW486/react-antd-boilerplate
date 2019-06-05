@@ -1,32 +1,40 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 import { Link, withRouter } from 'react-router-dom';
 import { Layout, Icon, Menu } from 'antd';
+
+import routes from 'routes';
+import { makeSelectUser } from 'containers/App/selectors';
 
 function Sider(props) {
   return (
     <Layout.Sider>
       <Menu theme="dark" selectedKeys={[props.location.pathname]} mode="inline">
-        <Menu.Item key="/">
-          <Link to="/">
-            <Icon type="home" />
-            <span>HomePage</span>
-          </Link>
-        </Menu.Item>
-        <Menu.Item key="/signin">
-          <Link to="/signin">
-            <Icon type="desktop" />
-            <span>Sign In</span>
-          </Link>
-        </Menu.Item>
-        <Menu.Item key="/notfound">
-          <Link to="/notfound">
-            <Icon type="pie-chart" />
-            <span>NotFound</span>
-          </Link>
-        </Menu.Item>
+        {routes.map((route) => (
+          (!route.auth) ||
+          (!route.permission && props.user) ||
+          (props.user && props.user.permissions.includes(route.permission)) ?
+          (
+            <Menu.Item key={route.path || "/notfound"}>
+              <Link to={route.path || "/notfound"}>
+                <Icon type={route.Icon} />
+                <span>{route.name}</span>
+              </Link>
+            </Menu.Item>
+          ) : (<React.Fragment />)))}
       </Menu>
     </Layout.Sider>
   );
 }
 
-export default withRouter(props => <Sider {...props} />);
+Sider.propTypes = {
+  user: PropTypes.object,
+};
+
+export default connect(
+  createStructuredSelector({
+    user: makeSelectUser(),
+  }),
+)(withRouter(props => <Sider {...props} />));
