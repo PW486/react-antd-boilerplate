@@ -8,22 +8,25 @@ import { Layout, Icon, Menu } from 'antd';
 import routes from 'routes';
 import { makeSelectUser } from 'containers/App/selectors';
 
+/* eslint-disable indent */
 function Sider(props) {
   return (
     <Layout.Sider>
       <Menu theme="dark" selectedKeys={[props.location.pathname]} mode="inline">
-        {routes.map((route) => (
-          (!route.auth) ||
+        {routes.map(route =>
+          !route.auth ||
           (!route.permission && props.user) ||
-          (props.user && props.user.permissions.includes(route.permission)) ?
-          (
-            <Menu.Item key={route.path || "/notfound"}>
-              <Link to={route.path || "/notfound"}>
+          (props.user && props.user.permissions.includes(route.permission)) ? (
+            <Menu.Item key={route.path || '/notfound'}>
+              <Link to={route.path || '/notfound'}>
                 <Icon type={route.Icon} />
                 <span>{route.name}</span>
               </Link>
             </Menu.Item>
-          ) : (<React.Fragment />)))}
+          ) : (
+            <React.Fragment />
+          ),
+        )}
       </Menu>
     </Layout.Sider>
   );
@@ -31,6 +34,7 @@ function Sider(props) {
 
 Sider.propTypes = {
   user: PropTypes.object,
+  location: PropTypes.object,
 };
 
 export default connect(

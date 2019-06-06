@@ -14,9 +14,8 @@ export function* postSignInSaga() {
     const user = yield call(postSignInAPI, { email, password });
     yield put(postSignInSuccess(user));
     yield put(push('/'));
-  }
-  catch (error) {
-    yield put(postSignInFailure(error))
+  } catch (error) {
+    yield put(postSignInFailure(error));
   }
 }
 

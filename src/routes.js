@@ -1,11 +1,11 @@
-import Board from "containers/Board";
-import SignIn from "containers/SignIn";
-import NotFound from "components/NotFound";
+import Board from 'containers/Board';
+import SignIn from 'containers/SignIn';
+import NotFound from 'components/NotFound';
 
 const routes = [
   {
     exact: true,
-    path: "/",
+    path: '/',
     name: 'Home',
     Icon: 'home',
     component: Board,
@@ -13,17 +13,17 @@ const routes = [
     permission: 'admin',
   },
   {
-    path: "/signin",
+    path: '/signin',
     name: 'Sign In',
     Icon: 'login',
     component: SignIn,
   },
   {
-    path: "",
+    path: '',
     name: 'Not Found',
     Icon: 'close-circle',
     component: NotFound,
-  }
+  },
 ];
 
 export default routes;

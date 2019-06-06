@@ -1,15 +1,14 @@
-import { getPostsSuccess, getPostsFailure, postPostsFailure, postPostsSuccess, getPostsAction } from "./actions";
 import { takeLatest, call, put, select } from 'redux-saga/effects';
-import { GET_POSTS_REQUEST, POST_POSTS_REQUEST } from "./constants";
-import { getPostsAPI, postPostsAPI } from "./api";
-import { makeSelectTitle, makeSelectText, makeSelectPhoto } from "./selectors";
+import { getPostsSuccess, getPostsFailure, postPostsFailure, postPostsSuccess, getPostsAction } from './actions';
+import { GET_POSTS_REQUEST, POST_POSTS_REQUEST } from './constants';
+import { getPostsAPI, postPostsAPI } from './api';
+import { makeSelectTitle, makeSelectText, makeSelectPhoto } from './selectors';
 
 export function* getPostsSaga() {
   try {
     const postList = yield call(getPostsAPI);
     yield put(getPostsSuccess(postList));
-  }
-  catch (error) {
+  } catch (error) {
     yield put(getPostsFailure(error));
   }
 }
@@ -24,8 +23,7 @@ export function* postPostsSaga() {
     yield call(postPostsAPI, { title, text, photo });
     yield put(postPostsSuccess());
     yield put(getPostsAction());
-  }
-  catch (error) {
+  } catch (error) {
     yield put(postPostsFailure(error));
   }
 }

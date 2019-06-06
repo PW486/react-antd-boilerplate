@@ -47,8 +47,3 @@ Need to change the **`REACT_APP_BASE_URL`**. Here is an example server. [https:/
 | Authentication      | **JWT**        |
 | Linter              | **ESLint**     |
 | Formatter           | **Prettier**   |
-
-## TODO
-
-- Linter + Formatter
-- Release

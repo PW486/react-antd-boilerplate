@@ -11,7 +11,10 @@ import routes from 'routes';
 export default function App() {
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <Helmet titleTemplate="%s - Create React Ant Design Boilerplate" defaultTitle="Create React Ant Design Boilerplate">
+      <Helmet
+        titleTemplate="%s - Create React Ant Design Boilerplate"
+        defaultTitle="Create React Ant Design Boilerplate"
+      >
         <meta name="description" content="A Create React Ant Design Boilerplate application" />
       </Helmet>
       <Header />
@@ -19,9 +22,7 @@ export default function App() {
         <Sider />
         <Layout>
           <Layout.Content style={{ margin: '16px' }}>
-            <Switch>
-              {routes.map((route) => (route.auth ? <PrivateRoute {...route} /> : <Route {...route} />))}
-            </Switch>
+            <Switch>{routes.map(route => (route.auth ? <PrivateRoute {...route} /> : <Route {...route} />))}</Switch>
           </Layout.Content>
           <Layout.Footer style={{ textAlign: 'center' }}>Create React Ant Design Boilerplate</Layout.Footer>
         </Layout>

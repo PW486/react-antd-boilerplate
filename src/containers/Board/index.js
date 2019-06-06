@@ -8,8 +8,24 @@ import { Button, Table, Modal, Input, Icon, Upload, Avatar } from 'antd';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
-import { makeSelectPostList, makeSelectModalVisible, makeSelectModalLoading, makeSelectTitle, makeSelectText, makeSelectPhoto } from './selectors';
-import { getPostsAction, handleModalShowAction, handleModalCancelAction, postPostsAction, onChangeTitleAction, onChangeTextAction, onChangeAddPhotoAction, onChangeDelPhotoAction } from './actions';
+import {
+  makeSelectPostList,
+  makeSelectModalVisible,
+  makeSelectModalLoading,
+  makeSelectTitle,
+  makeSelectText,
+  makeSelectPhoto,
+} from './selectors';
+import {
+  getPostsAction,
+  handleModalShowAction,
+  handleModalCancelAction,
+  postPostsAction,
+  onChangeTitleAction,
+  onChangeTextAction,
+  onChangeAddPhotoAction,
+  onChangeDelPhotoAction,
+} from './actions';
 import reducer from './reducer';
 import saga from './saga';
 
@@ -28,27 +44,30 @@ const columns = [
     title: 'Text',
     dataIndex: 'text',
     key: 'text',
-    render: text => (<pre style={{marginBottom: 0, maxHeight: 100}}>{text}</pre>),
+    render: text => <pre style={{ marginBottom: 0, maxHeight: 100 }}>{text}</pre>,
   },
   {
     title: 'Photo',
     dataIndex: 'photo',
     key: 'photo',
-    render: photo => photo ?
-      (<Avatar src={process.env.REACT_APP_BASE_URL + '/' + photo} shape="square"/>) :
-      (<Avatar icon="file-image" shape="square" />),
+    render: photo =>
+      photo ? (
+        <Avatar src={`${process.env.REACT_APP_BASE_URL}/${photo}`} shape="square" />
+      ) : (
+          <Avatar icon="file-image" shape="square" />
+        ),
   },
   {
     title: 'Created At',
     dataIndex: 'createdAt',
     key: 'createdAt',
-    render: time => (<span>{time}</span>),
+    render: time => <span>{time}</span>,
   },
   {
     title: 'Updated At',
     dataIndex: 'updatedAt',
     key: 'updatedAt',
-    render: time => (<span>{time}</span>),
+    render: time => <span>{time}</span>,
   },
 ];
 
@@ -65,7 +84,9 @@ class Board extends React.Component {
           <meta name="description" content="Description of Board" />
         </Helmet>
         <div style={{ marginBottom: 16 }}>
-          <Button type="primary" onClick={this.props.handleModalShow}>Write</Button>
+          <Button type="primary" onClick={this.props.handleModalShow}>
+            Write
+          </Button>
         </div>
         <Modal
           title="Write a Post"
@@ -75,11 +96,7 @@ class Board extends React.Component {
           onCancel={this.props.handleModalCancel}
         >
           <div style={{ marginBottom: 16 }}>
-            <Input
-              placeholder="Title"
-              onChange={this.props.onChangeTitle}
-              value={this.props.title}
-            />
+            <Input placeholder="Title" onChange={this.props.onChangeTitle} value={this.props.title} />
           </div>
           <div style={{ marginBottom: 16 }}>
             <Input.TextArea
@@ -119,6 +136,10 @@ Board.propTypes = {
   postPosts: PropTypes.func,
   handleModalShow: PropTypes.func,
   handleModalCancel: PropTypes.func,
+  onChangeTitle: PropTypes.func,
+  onChangeText: PropTypes.func,
+  onChangeAddPhoto: PropTypes.func,
+  onChangeDelPhoto: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -142,9 +163,12 @@ const mapDispatchToProps = dispatch => ({
     return false;
   },
   onChangeDelPhoto: () => dispatch(onChangeDelPhotoAction()),
-})
+});
 
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
 const withReducer = injectReducer({ key: 'board', reducer });
 const withSaga = injectSaga({ key: 'board', saga });
 

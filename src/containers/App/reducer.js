@@ -5,7 +5,7 @@ import { POST_SIGN_IN_SUCCESS } from '../SignIn/constants';
 const token = localStorage.getItem('token');
 const userState = token ? { user: jwtDecode(token) } : {};
 export const initialState = {
-  ...userState
+  ...userState,
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -13,9 +13,9 @@ const appReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case POST_SIGN_IN_SUCCESS:
-        const token = action.payload.data.access_token;
-        localStorage.setItem('token', token);
-        draft.user = jwtDecode(token);
+        const newToken = action.payload.data.access_token;
+        localStorage.setItem('token', newToken);
+        draft.user = jwtDecode(newToken);
         break;
     }
   });
