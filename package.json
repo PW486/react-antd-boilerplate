@@ -1,6 +1,7 @@
 {
   "name": "react-antd-boilerplate",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "description": "Create React Ant Design Boilerplate",
   "private": true,
   "scripts": {
     "start": "react-app-rewired start",
@@ -8,12 +9,18 @@
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PW486/react-antd-boilerplate.git"
+  },
+  "author": "DONGGEON LIM <ooqwe486@gmail.com>",
+  "license": "MIT",
   "dependencies": {
-    "antd": "^3.18.1",
-    "axios": "^0.18.0",
-    "babel-plugin-import": "^1.11.0",
+    "antd": "^3.19.2",
+    "axios": "^0.19.0",
+    "babel-plugin-import": "^1.12.0",
     "connected-react-router": "^6.4.0",
-    "customize-cra": "^0.2.12",
+    "customize-cra": "^0.2.13",
     "history": "^4.9.0",
     "immer": "^3.1.2",
     "jwt-decode": "^2.2.0",
@@ -23,22 +30,21 @@
     "react-app-rewired": "^2.1.3",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
-    "react-intl": "^2.9.0",
     "react-redux": "^7.0.3",
-    "react-router": "^5.0.0",
-    "react-router-dom": "^5.0.0",
+    "react-router": "^5.0.1",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "redux": "^4.0.1",
     "redux-saga": "^1.0.2",
     "reselect": "^4.0.0",
-    "styled-components": "^4.2.0"
+    "styled-components": "^4.3.0"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "^4.3.0",
-    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.13.0",
@@ -48,7 +54,7 @@
     "stylelint": "^10.0.1",
     "stylelint-config-recommended": "^2.2.0",
     "stylelint-config-styled-components": "^0.1.1",
-    "stylelint-processor-styled-components": "^1.7.0"
+    "stylelint-processor-styled-components": "^1.8.0"
   },
   "eslintConfig": {
     "extends": "react-app"
