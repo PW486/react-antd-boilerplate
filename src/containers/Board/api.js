@@ -8,7 +8,7 @@ export function postPostsAPI(payload) {
   const formData = new FormData();
   formData.set('title', payload.title);
   formData.set('text', payload.text);
-  payload.file && formData.set('photo', payload.file);
+  payload.photo && formData.set('photo', payload.photo);
 
   return request.post('v1/posts', formData);
 }

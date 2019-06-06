@@ -2,6 +2,7 @@ import { getPostsSuccess, getPostsFailure, postPostsFailure, postPostsSuccess, g
 import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { GET_POSTS_REQUEST, POST_POSTS_REQUEST } from "./constants";
 import { getPostsAPI, postPostsAPI } from "./api";
+import { makeSelectTitle, makeSelectText, makeSelectPhoto } from "./selectors";
 
 export function* getPostsSaga() {
   try {
@@ -14,8 +15,13 @@ export function* getPostsSaga() {
 }
 
 export function* postPostsSaga() {
+  const title = yield select(makeSelectTitle());
+  const text = yield select(makeSelectText());
+  const photoList = yield select(makeSelectPhoto());
+  const photo = photoList[0];
+
   try {
-    yield call(postPostsAPI, { title : "kieek", text: "kieek" });
+    yield call(postPostsAPI, { title, text, photo });
     yield put(postPostsSuccess());
     yield put(getPostsAction());
   }

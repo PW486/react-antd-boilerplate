@@ -13,7 +13,8 @@ const appReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case POST_SIGN_IN_SUCCESS:
-        localStorage.setItem('token', action.payload.data.access_token);
+        const token = action.payload.data.access_token;
+        localStorage.setItem('token', token);
         draft.user = jwtDecode(token);
         break;
     }

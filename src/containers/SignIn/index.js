@@ -27,6 +27,7 @@ class SignIn extends React.Component {
             placeholder="Email"
             size="large"
             onChange={this.props.onChangeEmail}
+            onPressEnter={this.props.postSignIn}
             value={this.props.email}
           />
         </div>
@@ -36,6 +37,7 @@ class SignIn extends React.Component {
             placeholder="Password"
             size="large"
             onChange={this.props.onChangePassword}
+            onPressEnter={this.props.postSignIn}
             value={this.props.password}
           />
         </div>
@@ -60,8 +62,8 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => ({
   postSignIn: () => dispatch(postSignInAction()),
-  onChangeEmail: evt => dispatch(onChangeEmailAction(evt.target.value)),
-  onChangePassword: evt => dispatch(onChangePasswordAction(evt.target.value)),
+  onChangeEmail: e => dispatch(onChangeEmailAction(e.target.value)),
+  onChangePassword: e => dispatch(onChangePasswordAction(e.target.value)),
 })
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
