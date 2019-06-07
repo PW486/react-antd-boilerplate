@@ -7,7 +7,7 @@ const routes = [
     exact: true,
     path: '/',
     name: 'Home',
-    Icon: 'home',
+    icon: 'home',
     component: Board,
     auth: true,
     permission: 'admin',
@@ -15,13 +15,13 @@ const routes = [
   {
     path: '/signin',
     name: 'Sign In',
-    Icon: 'login',
+    icon: 'login',
     component: SignIn,
   },
   {
     path: '',
     name: 'Not Found',
-    Icon: 'close-circle',
+    icon: 'close-circle',
     component: NotFound,
   },
 ];

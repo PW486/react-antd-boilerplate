@@ -19,7 +19,7 @@ function Sider(props) {
           (props.user && props.user.permissions.includes(route.permission)) ? (
             <Menu.Item key={route.path || '/notfound'}>
               <Link to={route.path || '/notfound'}>
-                <Icon type={route.Icon} />
+                <Icon type={route.icon} />
                 <span>{route.name}</span>
               </Link>
             </Menu.Item>
