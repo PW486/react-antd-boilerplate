@@ -1,6 +1,6 @@
 {
   "name": "react-antd-boilerplate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Create React Ant Design Boilerplate",
   "private": true,
   "scripts": {
@@ -37,7 +37,8 @@
     "redux": "^4.0.1",
     "redux-saga": "^1.0.2",
     "reselect": "^4.0.0",
-    "styled-components": "^4.3.0"
+    "styled-components": "^4.3.0",
+    "url-join": "^4.0.0"
   },
   "devDependencies": {
     "eslint": "^5.16.0",

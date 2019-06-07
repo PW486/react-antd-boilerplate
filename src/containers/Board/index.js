@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { Button, Table, Modal, Input, Icon, Upload, Avatar } from 'antd';
+import urljoin from 'url-join';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -52,10 +53,10 @@ const columns = [
     key: 'photo',
     render: photo =>
       photo ? (
-        <Avatar src={`${process.env.REACT_APP_BASE_URL}/${photo}`} shape="square" />
+        <Avatar src={`${urljoin(process.env.REACT_APP_BASE_URL, photo)}`} shape="square" />
       ) : (
-          <Avatar icon="file-image" shape="square" />
-        ),
+        <Avatar icon="file-image" shape="square" />
+      ),
   },
   {
     title: 'Created At',
