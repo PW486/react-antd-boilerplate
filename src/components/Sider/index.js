@@ -15,17 +15,17 @@ function Sider(props) {
       <Menu theme="dark" selectedKeys={[props.location.pathname]} mode="inline">
         {routes.map(route =>
           !route.auth ||
-          (!route.permission && props.user) ||
-          (props.user && props.user.permissions.includes(route.permission)) ? (
-            <Menu.Item key={route.path || '/notfound'}>
-              <Link to={route.path || '/notfound'}>
-                <Icon type={route.icon} />
-                <span>{route.name}</span>
-              </Link>
-            </Menu.Item>
-          ) : (
-            <React.Fragment />
-          ),
+            (!route.permission && props.user) ||
+            (props.user && props.user.permissions.includes(route.permission)) ? (
+              <Menu.Item key={route.path || '/notfound'}>
+                <Link to={route.path || '/notfound'}>
+                  <Icon type={route.icon} />
+                  <span>{route.name}</span>
+                </Link>
+              </Menu.Item>
+            ) : (
+              <React.Fragment />
+            ),
         )}
       </Menu>
     </Layout.Sider>
@@ -37,8 +37,10 @@ Sider.propTypes = {
   location: PropTypes.object,
 };
 
+const mapStateToProps = createStructuredSelector({
+  user: makeSelectUser(),
+});
+
 export default connect(
-  createStructuredSelector({
-    user: makeSelectUser(),
-  }),
+  mapStateToProps,
 )(withRouter(props => <Sider {...props} />));

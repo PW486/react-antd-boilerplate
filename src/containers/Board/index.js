@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -7,8 +7,8 @@ import { compose } from 'redux';
 import { Button, Table, Modal, Input, Icon, Upload, Avatar } from 'antd';
 import urljoin from 'url-join';
 
-import injectSaga from 'utils/injectSaga';
-import injectReducer from 'utils/injectReducer';
+import { useInjectSaga } from 'utils/injectSaga';
+import { useInjectReducer } from 'utils/injectReducer';
 import {
   makeSelectPostList,
   makeSelectModalVisible,
@@ -55,8 +55,8 @@ const columns = [
       photo ? (
         <Avatar src={`${urljoin(process.env.REACT_APP_BASE_URL, photo)}`} shape="square" />
       ) : (
-        <Avatar icon="file-image" shape="square" />
-      ),
+          <Avatar icon="file-image" shape="square" />
+        ),
   },
   {
     title: 'Created At',
@@ -72,58 +72,61 @@ const columns = [
   },
 ];
 
-class Board extends React.Component {
-  componentDidMount() {
-    this.props.getPosts();
-  }
+const key = 'board';
 
-  render() {
-    return (
-      <React.Fragment>
-        <Helmet>
-          <title>Board</title>
-          <meta name="description" content="Description of Board" />
-        </Helmet>
+function Board(props) {
+  useInjectReducer({ key, reducer });
+  useInjectSaga({ key, saga });
+
+  useEffect(() => {
+    props.getPosts();
+  }, []);
+
+  return (
+    <>
+      <Helmet>
+        <title>Board</title>
+        <meta name="description" content="Description of Board" />
+      </Helmet>
+      <div style={{ marginBottom: 16 }}>
+        <Button type="primary" onClick={props.handleModalShow}>
+          Write
+        </Button>
+      </div>
+      <Modal
+        title="Write a Post"
+        visible={props.modalVisible}
+        onOk={props.postPosts}
+        confirmLoading={props.modalLoading}
+        onCancel={props.handleModalCancel}
+      >
         <div style={{ marginBottom: 16 }}>
-          <Button type="primary" onClick={this.props.handleModalShow}>
-            Write
-          </Button>
+          <Input placeholder="Title" onChange={props.onChangeTitle} value={props.title} />
         </div>
-        <Modal
-          title="Write a Post"
-          visible={this.props.modalVisible}
-          onOk={this.props.postPosts}
-          confirmLoading={this.props.modalLoading}
-          onCancel={this.props.handleModalCancel}
-        >
-          <div style={{ marginBottom: 16 }}>
-            <Input placeholder="Title" onChange={this.props.onChangeTitle} value={this.props.title} />
-          </div>
-          <div style={{ marginBottom: 16 }}>
-            <Input.TextArea
-              rows={4}
-              placeholder="Write some text..."
-              onChange={this.props.onChangeText}
-              value={this.props.text}
-            />
-          </div>
-          <div style={{ marginBottom: 16 }}>
-            <Upload
-              onRemove={this.props.onChangeDelPhoto}
-              beforeUpload={this.props.onChangeAddPhoto}
-              fileList={this.props.photo}
-              accept="image/*"
-            >
-              <Button>
-                <Icon type="upload" /> Select a Photo
-              </Button>
-            </Upload>
-          </div>
-        </Modal>
-        <Table dataSource={this.props.postList} columns={columns} />
-      </React.Fragment>
-    );
-  }
+        <div style={{ marginBottom: 16 }}>
+          <Input.TextArea
+            rows={4}
+            placeholder="Write some text..."
+            onChange={props.onChangeText}
+            value={props.text}
+          />
+        </div>
+        <div style={{ marginBottom: 16 }}>
+          <Upload
+            onRemove={props.onChangeDelPhoto}
+            beforeUpload={props.onChangeAddPhoto}
+            fileList={props.photo}
+            accept="image/*"
+          >
+            <Button>
+              <Icon type="upload" /> Select a Photo
+            </Button>
+          </Upload>
+        </div>
+      </Modal>
+      <Table dataSource={props.postList} columns={columns} />
+    </>
+  );
 }
 
 Board.propTypes = {
@@ -170,12 +173,8 @@ const withConnect = connect(
   mapStateToProps,
   mapDispatchToProps,
 );
-const withReducer = injectReducer({ key: 'board', reducer });
-const withSaga = injectSaga({ key: 'board', saga });
 
 export default compose(
   withConnect,
-  withReducer,
-  withSaga,
   memo,
 )(Board);

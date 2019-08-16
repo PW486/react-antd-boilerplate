@@ -6,16 +6,21 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import { Input, Icon, Button } from 'antd';
 
-import injectSaga from 'utils/injectSaga';
-import injectReducer from 'utils/injectReducer';
+import { useInjectSaga } from 'utils/injectSaga';
+import { useInjectReducer } from 'utils/injectReducer';
 import { makeSelectEmail, makeSelectPassword } from './selectors';
 import { postSignInAction, onChangeEmailAction, onChangePasswordAction } from './actions';
 import reducer from './reducer';
 import saga from './saga';
 
+const key = 'signIn';
+
 function SignIn(props) {
+  useInjectReducer({ key, reducer });
+  useInjectSaga({ key, saga });
+
   return (
-    <React.Fragment>
+    <>
       <Helmet>
         <title>SignIn</title>
         <meta name="description" content="Description of SignIn" />
@@ -43,7 +48,7 @@ function SignIn(props) {
       <Button type="primary" onClick={props.postSignIn}>
         Sign In
       </Button>
-    </React.Fragment>
+    </>
   );
 }
 
@@ -70,12 +75,8 @@ const withConnect = connect(
   mapStateToProps,
   mapDispatchToProps,
 );
-const withReducer = injectReducer({ key: 'signIn', reducer });
-const withSaga = injectSaga({ key: 'signIn', saga });
 
 export default compose(
   withConnect,
-  withReducer,
-  withSaga,
   memo,
 )(SignIn);

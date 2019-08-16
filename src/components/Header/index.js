@@ -26,8 +26,10 @@ Header.propTypes = {
   user: PropTypes.object,
 };
 
+const mapStateToProps = createStructuredSelector({
+  user: makeSelectUser(),
+});
+
 export default connect(
-  createStructuredSelector({
-    user: makeSelectUser(),
-  }),
+  mapStateToProps,
 )(Header);
