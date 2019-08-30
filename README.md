@@ -47,3 +47,14 @@ Need to change the **`REACT_APP_BASE_URL`**. Here is an example server. [https:/
 | Authentication      | **JWT**        |
 | Linter              | **ESLint**     |
 | Formatter           | **Prettier**   |
+
+## Demo
+
+[![Create React Ant Design Boilerplate](https://img.youtube.com/vi/-TT-cMpDv1c/0.jpg)](https://www.youtube.com/watch?v=-TT-cMpDv1c)
+<br>
+[YouTube](https://www.youtube.com/watch?v=-TT-cMpDv1c)
+
+## License
+
+Copyright © 2019 [DONGGEON LIM](https://github.com/PW486).<br />
+This project is [MIT](https://github.com/PW486/react-antd-boilerplate/blob/master/LICENSE) licensed.
