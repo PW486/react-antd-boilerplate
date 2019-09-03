@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { initialState } from './reducer';
+import { initialState } from './board.reducer';
 
 const selectBoardDomain = state => state.board || initialState;
 

@@ -4,7 +4,7 @@ import {
   POST_SIGN_IN_FAILURE,
   ON_CHANGE_EMAIL,
   ON_CHANGE_PASSWORD,
-} from './constants';
+} from './signin.constants';
 
 export const postSignInAction = payload => ({ type: POST_SIGN_IN_REQUEST, payload });
 export const postSignInSuccess = payload => ({ type: POST_SIGN_IN_SUCCESS, payload });

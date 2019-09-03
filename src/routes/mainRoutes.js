@@ -1,8 +1,8 @@
 import Board from 'containers/Board';
 import SignIn from 'containers/SignIn';
-import NotFound from 'components/NotFound';
+import NotFound from 'containers/NotFound';
 
-const routes = [
+const mainRoutes = [
   {
     exact: true,
     path: '/',
@@ -26,4 +26,4 @@ const routes = [
   },
 ];
 
-export default routes;
+export default mainRoutes;

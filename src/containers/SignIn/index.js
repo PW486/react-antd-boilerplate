@@ -8,12 +8,12 @@ import { Input, Icon, Button } from 'antd';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
-import { makeSelectEmail, makeSelectPassword } from './selectors';
-import { postSignInAction, onChangeEmailAction, onChangePasswordAction } from './actions';
-import reducer from './reducer';
-import saga from './saga';
+import { makeSelectEmail, makeSelectPassword } from './signin.selectors';
+import { postSignInAction, onChangeEmailAction, onChangePasswordAction } from './signin.actions';
+import reducer from './signin.reducer';
+import saga from './signin.saga';
 
-const key = 'signIn';
+const key = 'signin';
 
 function SignIn(props) {
   useInjectReducer({ key, reducer });

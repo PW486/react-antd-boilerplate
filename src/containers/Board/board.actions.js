@@ -11,7 +11,7 @@ import {
   ON_CHANGE_TEXT,
   ON_CHANGE_ADD_PHOTO,
   ON_CHANGE_DEL_PHOTO,
-} from './constants';
+} from './board.constants';
 
 export const getPostsAction = payload => ({ type: GET_POSTS_REQUEST, payload });
 export const getPostsSuccess = payload => ({ type: GET_POSTS_SUCCESS, payload });

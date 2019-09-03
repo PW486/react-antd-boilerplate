@@ -1,10 +1,10 @@
 import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 
-import { POST_SIGN_IN_REQUEST } from './constants';
-import { postSignInAPI } from './api';
-import { postSignInSuccess, postSignInFailure } from './actions';
-import { makeSelectEmail, makeSelectPassword } from './selectors';
+import { POST_SIGN_IN_REQUEST } from './signin.constants';
+import { postSignInAPI } from './signin.api';
+import { postSignInSuccess, postSignInFailure } from './signin.actions';
+import { makeSelectEmail, makeSelectPassword } from './signin.selectors';
 
 export function* postSignInSaga() {
   const email = yield select(makeSelectEmail());

@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Link } from 'react-router-dom';
+import { compose } from 'redux';
 import { Layout, Icon } from 'antd';
 
-import { makeSelectUser } from 'containers/App/selectors';
+import { makeSelectUser } from 'global.selectors';
 
 function Header(props) {
   return (
@@ -30,6 +31,11 @@ const mapStateToProps = createStructuredSelector({
   user: makeSelectUser(),
 });
 
-export default connect(
+const withConnect = connect(
   mapStateToProps,
+);
+
+export default compose(
+  withConnect,
+  memo,
 )(Header);

@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 
+import configureStore from 'utils/configureStore';
 import history from 'utils/history';
-import App from 'containers/App';
-import configureStore from './configureStore';
+import App from './App';
 
 const initialState = {};
 const store = configureStore(initialState, history);
@@ -23,7 +23,7 @@ const render = () => {
 };
 
 if (module.hot) {
-  module.hot.accept(['containers/App'], () => {
+  module.hot.accept(['./App'], () => {
     ReactDOM.unmountComponentAtNode(MOUNT_NODE);
     render();
   });

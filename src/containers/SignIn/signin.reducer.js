@@ -1,8 +1,8 @@
 import produce from 'immer';
-import { ON_CHANGE_EMAIL, ON_CHANGE_PASSWORD } from './constants';
+import { ON_CHANGE_EMAIL, ON_CHANGE_PASSWORD } from './signin.constants';
 
 export const initialState = {
-  userForm: {
+  singInForm: {
     email: '',
     password: '',
   },
@@ -13,10 +13,10 @@ const signInReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case ON_CHANGE_EMAIL:
-        draft.userForm.email = action.payload;
+        draft.singInForm.email = action.payload;
         break;
       case ON_CHANGE_PASSWORD:
-        draft.userForm.password = action.payload;
+        draft.singInForm.password = action.payload;
         break;
     }
   });

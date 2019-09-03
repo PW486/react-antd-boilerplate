@@ -10,7 +10,7 @@ import {
   ON_CHANGE_TITLE,
   ON_CHANGE_ADD_PHOTO,
   ON_CHANGE_DEL_PHOTO,
-} from './constants';
+} from './board.constants';
 
 export const initialState = {
   postList: [],

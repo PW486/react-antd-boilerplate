@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Link, withRouter } from 'react-router-dom';
+import { compose } from 'redux';
 import { Layout, Icon, Menu } from 'antd';
 
-import routes from 'routes';
-import { makeSelectUser } from 'containers/App/selectors';
+import mainRoutes from 'routes/mainRoutes';
+import { makeSelectUser } from 'global.selectors';
 
 /* eslint-disable indent */
 function Sider(props) {
   return (
     <Layout.Sider>
       <Menu theme="dark" selectedKeys={[props.location.pathname]} mode="inline">
-        {routes.map(route =>
+        {mainRoutes.map(route =>
           !route.auth ||
             (!route.permission && props.user) ||
             (props.user && props.user.permissions.includes(route.permission)) ? (
@@ -41,6 +42,12 @@ const mapStateToProps = createStructuredSelector({
   user: makeSelectUser(),
 });
 
-export default connect(
+
+const withConnect = connect(
   mapStateToProps,
+);
+
+export default compose(
+  withConnect,
+  memo,
 )(withRouter(props => <Sider {...props} />));

@@ -1,6 +1,6 @@
 import produce from 'immer';
 import jwtDecode from 'jwt-decode';
-import { POST_SIGN_IN_SUCCESS } from '../SignIn/constants';
+import { POST_SIGN_IN_SUCCESS } from 'containers/SignIn/signin.constants';
 
 const token = localStorage.getItem('token');
 const userState = token ? { user: jwtDecode(token) } : {};
