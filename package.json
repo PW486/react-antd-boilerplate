@@ -1,8 +1,7 @@
 {
   "name": "react-antd-boilerplate",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Create React Ant Design Boilerplate",
-  "private": true,
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
@@ -16,7 +15,7 @@
   "author": "DONGGEON LIM <ooqwe486@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "antd": "^3.22.2",
+    "antd": "^3.23.1",
     "axios": "^0.19.0",
     "babel-plugin-import": "^1.12.1",
     "connected-react-router": "^6.5.2",
@@ -41,7 +40,7 @@
     "url-join": "^4.0.1"
   },
   "devDependencies": {
-    "eslint": "^6.2.2",
+    "eslint": "^6.3.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.1.0",

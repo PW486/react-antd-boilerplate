@@ -48,6 +48,47 @@ Need to change the **`REACT_APP_BASE_URL`**. Here is an example server. [https:/
 | Linter              | **ESLint**     |
 | Formatter           | **Prettier**   |
 
+## Project Structure
+
+### Main Directory
+
+```sh
+src
+├── components # Layout, Shared, Custom Components
+|  ├── Header
+|  ├── PrivateRoute
+|  └── Sider
+├── containers # Components with a Redux store
+|  ├── Board
+|  ├── NotFound
+|  └── SignIn
+├── routes # Routes directory
+├── utils # Util directory
+├── App.js
+├── global.reducer.js
+├── global.selectors.js
+└── index.js
+```
+
+### Board Directory
+
+```sh
+Board
+├── PostTable # Subcomponents
+|  └── index.js
+├── WritePostModal # Subcomponents
+|  └── index.js
+├── board.actions.js
+├── board.api.js
+├── board.constants.js
+├── board.reducer.js
+├── board.saga.js
+├── board.selectors.js
+└── index.js
+```
+
+File naming convention is `"key of store"."attribute"`. Subcomponents that will be used only within the page create and use separate directories.
+
 ## Demo
 
 [![Create React Ant Design Boilerplate](https://img.youtube.com/vi/-TT-cMpDv1c/0.jpg)](https://www.youtube.com/watch?v=-TT-cMpDv1c)
