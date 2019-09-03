@@ -6,7 +6,7 @@ Need to change the **`REACT_APP_BASE_URL`**. Here is an example server. [https:/
 
 ## Getting Started
 
-```
+```sh
 > git clone https://github.com/PW486/react-antd-boilerplate.git
 > npm install
 > npm start
@@ -14,21 +14,21 @@ Need to change the **`REACT_APP_BASE_URL`**. Here is an example server. [https:/
 
 ### Set Environments
 
-```
+```sh
 > cp .env.example .env
 > vi .env
 ```
 
 ### Building
 
-```
+```sh
 > npm run build
 ```
 
 ## Developing
 
 - Remove local branches deleted on remote server
-  ```
+  ```sh
   > git fetch -p && for branch in `git branch -vv --no-color | grep ': gone]' | awk '{print $1}'`; do git branch -D $branch; done
   ```
 - Keep the linter and formatter rules
@@ -52,7 +52,7 @@ Need to change the **`REACT_APP_BASE_URL`**. Here is an example server. [https:/
 
 ### Main Directory
 
-```sh
+```makefile
 src
 ├── components # Layout, Shared, Custom Components
 |  ├── Header
@@ -72,7 +72,7 @@ src
 
 ### Board Directory
 
-```sh
+```makefile
 Board
 ├── PostTable # Subcomponents
 |  └── index.js
