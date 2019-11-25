@@ -91,7 +91,7 @@ File naming convention is `"key of store"."attribute"`. Subcomponents that will 
 
 ## Demo
 
-[![Create React Ant Design Boilerplate](https://img.youtube.com/vi/-TT-cMpDv1c/0.jpg)](https://www.youtube.com/watch?v=-TT-cMpDv1c)
+[![Create React Ant Design Boilerplate](https://user-images.githubusercontent.com/14247340/69508953-a9f42d00-0f7a-11ea-97bc-2369b7e65676.png)](https://www.youtube.com/watch?v=-TT-cMpDv1c)
 <br>
 [YouTube](https://www.youtube.com/watch?v=-TT-cMpDv1c)
 
